@@ -9,6 +9,9 @@ import client.view.customFX.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
+import database.dao.DataBaseService;
+import database.entity.Message;
+import database.entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
@@ -339,8 +342,13 @@ public class ChatViewController implements Initializable {
         contactListView.setItems(contactsObservList);
         //contactsObservList.addAll(clientController.getContactListOfCards());
         for (CFXListElement element:contactsObservList){
+            /*User myUser = clientController.getMyUser();
+            User otherUser = element.getUser();
+            DataBaseService dbService = new DataBaseService(myUser);
+            Message message = dbService.getLastMessage(otherUser, myUser);*/
             element.setUnreadMessages("0");
             element.setBody("Входящие сообщения");
+            //element.setBody(message.getText());
 
         }
     }

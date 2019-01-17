@@ -83,6 +83,19 @@
             <version>2.11.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.twalcari/syntaxhighlighterfx -->
+        <dependency>
+            <groupId>com.github.twalcari</groupId>
+            <artifactId>syntaxhighlighterfx</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/de.informaticum/syntaxhighlighter -->
+        <dependency>
+            <groupId>de.informaticum</groupId>
+            <artifactId>syntaxhighlighter</artifactId>
+            <version>3.0.90</version>
+        </dependency>
 
     </dependencies>
 

@@ -352,6 +352,9 @@ public class ChatViewController implements Initializable {
                             "color: #4285F4; \n"+
                         "} \n"+
                     "</style> \n"+
+                    /*"<link rel= \"stylesheet\" href=\"/highlight/styles/dark.css\"> \n"+
+                    "<script src=\"/highlight/highlight.pack.js\"></script> \n"+
+                    "<script>hljs.initHighlightingOnLoad();</script> \n"+*/
                   "</head> \n"+
                   "<body></body> \n"+
                 "</html> \n");

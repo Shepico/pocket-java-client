@@ -30,6 +30,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.regexp.RegExp;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -351,10 +352,22 @@ public class ChatViewController implements Initializable {
                         ".senderUserClassT { \n"+
                             "color: #4285F4; \n"+
                         "} \n"+
+                        //Блок для <code>
+                        "code { \n"+
+                            "white-space: pre-wrap; \n"+
+                            "width: 100%; \n"+
+                            "overflow-x: auto; \n"+
+                            "display: block; \n"+
+                            "border-radius: 5px; \n"+
+                            "line-height: 1.5; \n"+
+                            "max-height: 50vh; \n"+
+                            "background: #f2f2f2; \n"+
+                            "color: #404040; \n"+
+                            "font-size: 105%; \n"+
+                            "border-left: 10px solid #d9d9d9; \n"+
+                        "} \n"+
                     "</style> \n"+
-                    /*"<link rel= \"stylesheet\" href=\"/highlight/styles/dark.css\"> \n"+
-                    "<script src=\"/highlight/highlight.pack.js\"></script> \n"+
-                    "<script>hljs.initHighlightingOnLoad();</script> \n"+*/
+                    //"<script src=\"https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js\"></script> \n" +
                   "</head> \n"+
                   "<body></body> \n"+
                 "</html> \n");
@@ -443,6 +456,8 @@ public class ChatViewController implements Initializable {
         message = message.replaceAll("\n", "<br/>");
         //Парсим ссылки, получаем строку вида <a href="message">message</a>
         message = Common.urlToHyperlink(message);
+        //
+        System.out.println(message);
 
         boolean visibleDateDay=false;
         if (tsOld == null) {
@@ -528,6 +543,8 @@ public class ChatViewController implements Initializable {
             createMessageDiv(message, senderName, timestamp, attrClass);
             //updateLastMessageInCardsBody(message, senderName);
         }
+        //Подсветка кода
+
     }
 
     public void updateLastMessageInCardsBody(String message, String senderName, String receiverName, boolean send){

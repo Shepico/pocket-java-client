@@ -256,12 +256,40 @@ public class ChatViewController implements Initializable {
         }
     }
 
+    private String initHighlightScript(){
+        String path = "googleCodePrettify/prettify.js"; //script
+        ClassLoader cl = this.getClass().getClassLoader();
+        String script="";
+        try{
+            script = cl.getResource(path).toURI().toString();
+        }catch (Exception e){
+            //todo перенести в логирование
+            e.printStackTrace();
+        }
+        return script;
+    }
+
+    private String initHighlightCSS(){
+        String path = "googleCodePrettify/prettify.css"; //script
+        ClassLoader cl = this.getClass().getClassLoader();
+        String scriptCSS="";
+        try{
+            scriptCSS = cl.getResource(path).toURI().toString();
+        }catch (Exception e){
+            //todo перенести в логирование
+            e.printStackTrace();
+        }
+        return scriptCSS;
+    }
+
     // инициализация только HTML в WebView.
     private void initWebView() {
         webEngine.loadContent(
                 "<!DOCTYPE html> \n"+
                 "<html lang=\"en\"> \n"+
                   "<head> \n"+
+                    //стили для подсветки кода
+                    //"<link rel=\"stylesheet\" type=\"text/css\" href=\"" + initHighlightCSS() + "\"> \n"+
                     "<meta charset=UTF-8> \n"+
                     "<style> \n"+
                         "body { \n" +
@@ -352,24 +380,13 @@ public class ChatViewController implements Initializable {
                         ".senderUserClassT { \n"+
                             "color: #4285F4; \n"+
                         "} \n"+
-                        //Блок для <code>
-                        "code { \n"+
-                            "white-space: pre-wrap; \n"+
-                            "width: 100%; \n"+
-                            "overflow-x: auto; \n"+
-                            "display: block; \n"+
-                            "border-radius: 5px; \n"+
-                            "line-height: 1.5; \n"+
-                            "max-height: 50vh; \n"+
-                            "background: #f2f2f2; \n"+
-                            "color: #404040; \n"+
-                            "font-size: 105%; \n"+
-                            "border-left: 10px solid #d9d9d9; \n"+
-                        "} \n"+
                     "</style> \n"+
-                    //"<script src=\"https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js\"></script> \n" +
+                    //Подключение скрипта подсветки
+                    //"<script type=\"text/javascript\" src=\"" + initHighlightScript() + "\"></script> \n"+
+                        "<script src=\"https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js\"></script> \n"+
                   "</head> \n"+
-                  "<body></body> \n"+
+                  "<body></body> \n" +
+                        //"onload=\"PR.prettyPrint()\">
                 "</html> \n");
     }
 
@@ -543,7 +560,6 @@ public class ChatViewController implements Initializable {
             createMessageDiv(message, senderName, timestamp, attrClass);
             //updateLastMessageInCardsBody(message, senderName);
         }
-        //Подсветка кода
 
     }
 
